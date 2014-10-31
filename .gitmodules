@@ -1,0 +1,3 @@
+[submodule "build/libtar"]
+	path = build/libtar
+	url = https://github.com/IvanUkhov/libtar
