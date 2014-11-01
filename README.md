@@ -1,4 +1,4 @@
-# Tar
+# Tar [![Build Status][travis-svg]][travis-url]
 
 The library provides an interface to [libtar][1].
 
@@ -29,3 +29,6 @@ fn main() {
 3. Create a pull request.
 
 [1]: http://www.feep.net/libtar/
+
+[travis-svg]: https://travis-ci.org/IvanUkhov/rs-tar.svg?branch=master
+[travis-url]: https://travis-ci.org/IvanUkhov/rs-tar
