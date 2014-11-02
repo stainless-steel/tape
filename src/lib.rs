@@ -5,10 +5,15 @@
 #![feature(macro_rules, unsafe_destructor)]
 
 extern crate libc;
+extern crate sync;
 
+use self::sync::mutex::{StaticMutex, MUTEX_INIT};
 use std::io::{IoError, IoResult};
 
 mod raw;
+
+// libtar is not thread safe.
+static LOCK: StaticMutex = MUTEX_INIT;
 
 /// An archive.
 pub struct Archive {
@@ -30,6 +35,7 @@ impl Archive {
 
         let mut tar = 0 as *mut raw::TAR;
         unsafe {
+            let _lock = LOCK.lock();
             done!(raw::tar_open(&mut tar, path.to_c_str().as_ptr(),
                                 0 as *mut _, O_RDONLY, 0, 0));
         }
@@ -39,6 +45,7 @@ impl Archive {
     /// Extract all files from the archive into a path.
     pub fn extract_all(&self, path: &Path) -> IoResult<()> {
         unsafe {
+            let _lock = LOCK.lock();
             done!(raw::tar_extract_all(self.raw, path.to_c_str().as_ptr()));
         }
         Ok(())
@@ -50,6 +57,7 @@ impl Drop for Archive {
     #[inline]
     fn drop(&mut self) {
         unsafe {
+            let _lock = LOCK.lock();
             raw::tar_close(self.raw);
         }
     }
