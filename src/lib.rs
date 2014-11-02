@@ -1,4 +1,4 @@
-//! An interface to basic operations with tar archives.
+//! Basic operations with tar archives.
 
 #![feature(macro_rules, unsafe_destructor)]
 

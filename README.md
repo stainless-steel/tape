@@ -1,6 +1,6 @@
 # Tar [![Build Status][travis-svg]][travis-url]
 
-The library provides an interface to basic operations with tar archives.
+The library provides basic operations with tar archives.
 
 ## Usage
 
