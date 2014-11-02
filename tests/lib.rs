@@ -10,7 +10,7 @@ fn extract_all() {
 
     let dir = TempDir::new("tar").unwrap();
 
-    let tar = tar::Archive::open(&foo).unwrap();
+    let tar = tar::open(&foo).unwrap();
     tar.extract_all(dir.path()).unwrap();
 
     let bar = dir.path().join("bar.txt");

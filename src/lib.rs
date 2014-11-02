@@ -52,6 +52,10 @@ impl Archive {
     }
 }
 
+/// Open an archive.
+#[inline]
+pub fn open(path: &Path) -> IoResult<Archive> { Archive::open(path) }
+
 #[unsafe_destructor]
 impl Drop for Archive {
     #[inline]
