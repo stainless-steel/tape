@@ -17,6 +17,7 @@ In `main.rs`:
 extern crate tar;
 
 fn main() {
+    // tar -xf foo.tar -C bar
     let tar = tar::open(&Path::new("foo.tar")).unwrap();
     tar.extract_all(&Path::new("bar"));
 }
