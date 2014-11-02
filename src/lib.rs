@@ -40,8 +40,8 @@ impl Archive {
         Ok(Archive { raw: tar })
     }
 
-    /// Extract all files from the archive into a path.
-    pub fn extract_all(&self, path: &Path) -> IoResult<()> {
+    /// Extract all files from the archive into a directory.
+    pub fn extract(&self, path: &Path) -> IoResult<()> {
         unsafe {
             let _lock = LOCK.lock();
             done!(raw::tar_extract_all(self.raw, path.to_c_str().as_ptr()));
