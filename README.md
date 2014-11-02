@@ -1,6 +1,6 @@
 # Tar [![Build Status][travis-svg]][travis-url]
 
-The library provides an interface to [libtar][1].
+The library provides an interface to basic operations with tar archives.
 
 ## Usage
 
@@ -21,6 +21,10 @@ fn main() {
     tar.extract_all(&Path::new("bar"));
 }
 ```
+
+## Acknowledgments
+
+The library is based on [libtar][1] written by Mark D. Roth.
 
 ## Contributing
 

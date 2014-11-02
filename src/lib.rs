@@ -1,6 +1,4 @@
-//! An interface to [libtar][1].
-//!
-//! [1]: http://www.feep.net/libtar/
+//! An interface to basic operations with tar archives.
 
 #![feature(macro_rules, unsafe_destructor)]
 
