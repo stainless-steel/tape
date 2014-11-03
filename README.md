@@ -8,7 +8,7 @@ In `Cargo.toml`:
 
 ```toml
 [dependencies.tar]
-git = "https://github.com/IvanUkhov/rs-tar"
+git = "https://github.com/stainless-steel/tar"
 ```
 
 In `main.rs`:
@@ -35,5 +35,5 @@ The library is based on [libtar][1] written by Mark D. Roth.
 
 [1]: http://www.feep.net/libtar/
 
-[travis-svg]: https://travis-ci.org/IvanUkhov/rs-tar.svg?branch=master
-[travis-url]: https://travis-ci.org/IvanUkhov/rs-tar
+[travis-svg]: https://travis-ci.org/stainless-steel/tar.svg?branch=master
+[travis-url]: https://travis-ci.org/stainless-steel/tar
