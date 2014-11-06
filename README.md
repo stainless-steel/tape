@@ -4,7 +4,7 @@ The library provides basic operations with tar archives.
 
 ## [Documentation][docs]
 
-## Usage
+## Example
 
 In `Cargo.toml`:
 
