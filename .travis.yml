@@ -1,10 +1,5 @@
 language: rust
 
-script:
-  - cargo build --verbose
-  - cargo test --verbose
-  - cargo doc
-
 after_success:
   - curl https://stainless-steel.github.io/travis/after_success.sh -O
   - bash after_success.sh
