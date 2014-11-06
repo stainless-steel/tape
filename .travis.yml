@@ -1,1 +1,15 @@
 language: rust
+
+script:
+  - cargo build --verbose
+  - cargo test --verbose
+  - cargo doc
+
+after_success: |
+  sudo pip install ghp-import &&
+  ghp-import -n target/doc &&
+  git push -qf https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git gh-pages
+
+env:
+  global:
+    secure: FiuMAJ7ddQ7qbGramIH0ef9kMbKwSfwmUOXaIhoJuB5b6T5eHjyWiSvLPxFth/4XWFGzVFTT7phkBlK0zVOSF18G2ivGluHZ7+YSUWpgrW+4mY35pG4kpyKUz2baazKvFNRpoHi8VqwWSwYAKTGvlOLw+mmDdf5WDBSRyQByOC4=
