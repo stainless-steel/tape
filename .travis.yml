@@ -7,7 +7,7 @@ script:
 
 after_success:
   - curl https://stainless-steel.github.io/travis/after_success.sh -O
-  - ./after_success.sh
+  - bash after_success.sh
 
 env:
   global:
