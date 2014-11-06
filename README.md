@@ -2,6 +2,8 @@
 
 The library provides basic operations with tar archives.
 
+## [Documentation][docs]
+
 ## Usage
 
 In `Cargo.toml`:
@@ -37,3 +39,4 @@ The library is based on [libtar][1] written by Mark D. Roth.
 
 [travis-svg]: https://travis-ci.org/stainless-steel/tar.svg?branch=master
 [travis-url]: https://travis-ci.org/stainless-steel/tar
+[docs]: https://stainless-steel.github.io/tar
