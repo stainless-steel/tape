@@ -9,7 +9,7 @@ macro_rules! fmt(
 )
 
 macro_rules! get(
-    ($name:expr) => (::std::os::getenv($name).unwrap());
+    ($name:expr) => (::std::os::getenv($name).unwrap_or("".to_string()));
 )
 
 macro_rules! set(
