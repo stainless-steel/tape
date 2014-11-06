@@ -6,9 +6,7 @@ script:
   - cargo doc
 
 after_success: |
-  sudo pip install ghp-import &&
-  ghp-import -n target/doc &&
-  git push -qf https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git gh-pages
+  curl https://stainless-steel.github.io/travis/after_success.sh | sudo bash
 
 env:
   global:
