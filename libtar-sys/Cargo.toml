@@ -1,0 +1,10 @@
+[package]
+name = "libtar-sys"
+version = "0.0.1"
+authors = ["Ivan Ukhov <ivan.ukhov@gmail.com>"]
+links = "tar"
+build = "build.rs"
+
+[lib]
+name = "libtar-sys"
+path = "lib.rs"

@@ -2,4 +2,6 @@
 name = "tar"
 version = "0.0.1"
 authors = ["Ivan Ukhov <ivan.ukhov@gmail.com>"]
-build = "build.rs"
+
+[dependencies.libtar-sys]
+path = "libtar-sys"

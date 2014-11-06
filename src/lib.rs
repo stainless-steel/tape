@@ -5,10 +5,10 @@
 extern crate libc;
 extern crate sync;
 
+extern crate "libtar-sys" as raw;
+
 use self::sync::mutex::{StaticMutex, MUTEX_INIT};
 use std::io::{IoError, IoResult};
-
-mod raw;
 
 // libtar is not thread safe.
 static LOCK: StaticMutex = MUTEX_INIT;

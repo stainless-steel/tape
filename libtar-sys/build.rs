@@ -25,7 +25,7 @@ macro_rules! run(
 )
 
 fn main() {
-    let from = Path::new(get!("CARGO_MANIFEST_DIR")).join_many(["build", "libtar"]);
+    let from = Path::new(get!("CARGO_MANIFEST_DIR")).join("libtar");
     let into = Path::new(get!("OUT_DIR"));
 
     set!("CFLAGS", fmt!("{} -fPIC", get!("CFLAGS")));

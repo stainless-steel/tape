@@ -1,3 +1,5 @@
+extern crate libc;
+
 use libc::{c_char, c_int, c_long, c_void};
 
 // https://github.com/stainless-steel/libtar/blob/master/lib/libtar.h#L39
