@@ -2,4 +2,4 @@
 name = "tar"
 version = "0.0.1"
 authors = ["Ivan Ukhov <ivan.ukhov@gmail.com>"]
-build = "make -C build"
+build = "build.rs"
