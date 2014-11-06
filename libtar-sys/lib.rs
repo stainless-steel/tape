@@ -40,7 +40,6 @@ pub struct TAR {
     h: *mut c_void,
 }
 
-#[link(name = "tar")]
 extern {
     // https://github.com/stainless-steel/libtar/blob/master/lib/libtar.h#L107
     pub fn tar_open(t: *mut *mut TAR, pathname: *const c_char, typo: *mut c_void,
