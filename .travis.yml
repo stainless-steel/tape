@@ -1,8 +1,7 @@
 language: rust
 
 after_success:
-  - curl https://stainless-steel.github.io/travis/after_success.sh -O
-  - bash after_success.sh
+  - curl https://stainless-steel.github.io/travis/after_success.sh | bash
 
 env:
   global:
