@@ -32,7 +32,7 @@ The library is based on [libtar][1] written by Mark D. Roth.
 ## Contributing
 
 1. Fork the project.
-2. Implement your feature.
+2. Implement your idea.
 3. Create a pull request.
 
 [1]: http://www.feep.net/libtar/

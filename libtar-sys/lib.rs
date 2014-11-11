@@ -2,7 +2,8 @@ extern crate libc;
 
 use libc::{c_char, c_int, c_long, c_void};
 
-// https://github.com/stainless-steel/libtar/blob/master/lib/libtar.h#L39
+// https://github.com/stainless-steel/libtar/blob/master/lib/libtar.h
+
 #[repr(C)]
 #[allow(dead_code)]
 pub struct tar_header {
@@ -27,7 +28,6 @@ pub struct tar_header {
     gnu_longlink: *mut char,
 }
 
-// https://github.com/stainless-steel/libtar/blob/master/lib/libtar.h#L89
 #[repr(C)]
 #[allow(dead_code)]
 pub struct TAR {
@@ -41,13 +41,12 @@ pub struct TAR {
 }
 
 extern {
-    // https://github.com/stainless-steel/libtar/blob/master/lib/libtar.h#L107
+    // https://github.com/stainless-steel/libtar/blob/master/lib/libtar.h
+
     pub fn tar_open(t: *mut *mut TAR, pathname: *const c_char, typo: *mut c_void,
                     oflags: c_int, mode: c_int, options: c_int) -> c_int;
 
-    // https://github.com/stainless-steel/libtar/blob/master/lib/libtar.h#L118
     pub fn tar_close(t: *mut TAR) -> c_int;
 
-    // https://github.com/stainless-steel/libtar/blob/master/lib/libtar.h#L284
     pub fn tar_extract_all(t: *mut TAR, prefix: *const c_char) -> c_int;
 }
