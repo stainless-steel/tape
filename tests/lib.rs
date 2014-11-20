@@ -5,7 +5,7 @@ fn extract() {
     use std::io::TempDir;
     use std::io::fs::PathExtensions;
 
-    let foo = Path::new("tests").join_many(["fixtures", "foo.tar"]);
+    let foo = Path::new("tests").join_many(&["fixtures", "foo.tar"]);
     assert!(foo.exists());
 
     let dir = TempDir::new("tar").unwrap();
