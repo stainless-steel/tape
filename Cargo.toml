@@ -1,6 +1,6 @@
 [package]
 name = "tape"
-version = "0.0.2"
+version = "0.0.3"
 authors = ["Ivan Ukhov <ivan.ukhov@gmail.com>"]
 license = "MIT"
 repository = "https://github.com/stainless-steel/tape"
@@ -9,4 +9,4 @@ documentation = "https://stainless-steel.github.io/tape"
 description = "The library provides basic operations with tape archives (tar)."
 
 [dependencies]
-libtar-sys = "0.0.3"
+libtar-sys = "0.0.4"
