@@ -1,4 +1,4 @@
-extern crate tar;
+extern crate tape;
 
 #[test]
 fn extract() {
@@ -8,10 +8,10 @@ fn extract() {
     let foo = Path::new("tests").join_many(&["fixtures", "foo.tar"]);
     assert!(foo.exists());
 
-    let dir = TempDir::new("tar").unwrap();
+    let dir = TempDir::new("tape").unwrap();
 
-    let tar = tar::open(&foo).unwrap();
-    assert!(tar.extract(dir.path()).is_ok());
+    let archive = tape::open(&foo).unwrap();
+    assert!(archive.extract(dir.path()).is_ok());
 
     let bar = dir.path().join("bar.txt");
     assert!(bar.exists());

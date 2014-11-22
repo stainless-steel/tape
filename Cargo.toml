@@ -1,12 +1,12 @@
 [package]
-name = "tar"
+name = "tape"
 version = "0.0.1"
 authors = ["Ivan Ukhov <ivan.ukhov@gmail.com>"]
 license = "MIT"
-repository = "https://github.com/stainless-steel/tar"
-homepage = "https://github.com/stainless-steel/tar"
-documentation = "https://stainless-steel.github.io/tar"
-description = "The library provides basic operations with tar archives."
+repository = "https://github.com/stainless-steel/tape"
+homepage = "https://github.com/stainless-steel/tape"
+documentation = "https://stainless-steel.github.io/tape"
+description = "The library provides basic operations with tape archives (tar)."
 
 [dependencies]
 libtar-sys = "0.0.1"

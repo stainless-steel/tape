@@ -1,4 +1,4 @@
-//! Basic operations with tar archives.
+//! Basic operations with tape archives (tar).
 
 #![feature(macro_rules, unsafe_destructor)]
 

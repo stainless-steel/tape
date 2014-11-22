@@ -1,6 +1,6 @@
-# Tar [![Build Status][travis-svg]][travis-url]
+# Tape [![Build Status][travis-svg]][travis-url]
 
-The library provides basic operations with tar archives.
+The library provides basic operations with tape archives (tar).
 
 ## [Documentation][docs]
 
@@ -9,19 +9,19 @@ The library provides basic operations with tar archives.
 In `Cargo.toml`:
 
 ```toml
-[dependencies.tar]
-git = "https://github.com/stainless-steel/tar"
+[dependencies]
+tape = "0.0.1"
 ```
 
 In `main.rs`:
 
 ```rust
-extern crate tar;
+extern crate tape;
 
 fn main() {
     // tar -xf foo.tar -C bar
-    let tar = tar::open(&Path::new("foo.tar")).unwrap();
-    tar.extract(&Path::new("bar"));
+    let archive = tape::open(&Path::new("foo.tar")).unwrap();
+    archive.extract(&Path::new("bar"));
 }
 ```
 
