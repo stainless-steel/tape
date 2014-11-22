@@ -8,5 +8,5 @@ homepage = "https://github.com/stainless-steel/tar"
 documentation = "https://stainless-steel.github.io/tar"
 description = "The library provides basic operations with tar archives."
 
-[dependencies.libtar-sys]
-path = "libtar-sys"
+[dependencies]
+libtar-sys = "0.0.1"
