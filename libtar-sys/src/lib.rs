@@ -1,3 +1,7 @@
+//! Facilitation of static linking with [libtar][1].
+//!
+//! [1]: http://www.feep.net/libtar/
+
 extern crate libc;
 
 use libc::{c_char, c_int, c_long, c_void};

@@ -2,9 +2,9 @@
 name = "libtar-sys"
 version = "0.0.1"
 authors = ["Ivan Ukhov <ivan.ukhov@gmail.com>"]
+license = "MIT"
+repository = "https://github.com/stainless-steel/tar/libtar-sys"
+homepage = "https://github.com/stainless-steel/tar/libtar-sys"
+description = "The library facilitates static linking with libtar."
 links = "tar"
 build = "build.rs"
-
-[lib]
-name = "libtar-sys"
-path = "lib.rs"
