@@ -1,3 +1,0 @@
-[submodule "build/libtar"]
-	path = libtar-sys/libtar
-	url = https://github.com/stainless-steel/libtar
