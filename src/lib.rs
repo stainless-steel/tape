@@ -3,15 +3,15 @@
 #![feature(macro_rules, unsafe_destructor)]
 
 extern crate libc;
-extern crate sync;
+extern crate rustrt;
 
 extern crate "libtar-sys" as raw;
 
-use self::sync::mutex::{StaticMutex, MUTEX_INIT};
+use rustrt::mutex::{StaticNativeMutex, NATIVE_MUTEX_INIT};
 use std::io::{IoError, IoResult};
 
 // libtar is not thread safe.
-static LOCK: StaticMutex = MUTEX_INIT;
+static LOCK: StaticNativeMutex = NATIVE_MUTEX_INIT;
 
 /// An archive.
 pub struct Archive {
