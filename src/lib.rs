@@ -29,6 +29,7 @@ impl Archive {
     /// Open an archive.
     pub fn open(path: &Path) -> IoResult<Archive> {
         use libc::consts::os::posix88::O_RDONLY;
+        use std::c_str::ToCStr;
 
         let mut tar = 0 as *mut raw::TAR;
         unsafe {
@@ -41,6 +42,8 @@ impl Archive {
 
     /// Extract all files from the archive into a directory.
     pub fn extract(&self, path: &Path) -> IoResult<()> {
+        use std::c_str::ToCStr;
+
         unsafe {
             let _lock = LOCK.lock();
             done!(raw::tar_extract_all(self.raw, path.to_c_str().as_ptr()));
