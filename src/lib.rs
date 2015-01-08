@@ -1,6 +1,6 @@
 //! Basic operations with tape archives (tar).
 
-#![feature(macro_rules, unsafe_destructor)]
+#![feature(unsafe_destructor)]
 
 extern crate libc;
 
@@ -29,12 +29,12 @@ impl Archive {
     /// Open an archive.
     pub fn open(path: &Path) -> IoResult<Archive> {
         use libc::consts::os::posix88::O_RDONLY;
-        use std::c_str::ToCStr;
+        use std::ffi::CString;
 
         let mut tar = 0 as *mut raw::TAR;
         unsafe {
             let _lock = LOCK.lock();
-            done!(raw::tar_open(&mut tar, path.to_c_str().as_ptr(),
+            done!(raw::tar_open(&mut tar, CString::from_slice(path.as_vec()).as_ptr(),
                                 0 as *mut _, O_RDONLY, 0, 0));
         }
         Ok(Archive { raw: tar })
@@ -42,11 +42,11 @@ impl Archive {
 
     /// Extract all files from the archive into a directory.
     pub fn extract(&self, path: &Path) -> IoResult<()> {
-        use std::c_str::ToCStr;
+        use std::ffi::CString;
 
         unsafe {
             let _lock = LOCK.lock();
-            done!(raw::tar_extract_all(self.raw, path.to_c_str().as_ptr()));
+            done!(raw::tar_extract_all(self.raw, CString::from_slice(path.as_vec()).as_ptr()));
         }
         Ok(())
     }
