@@ -1,5 +1,6 @@
 //! Basic operations with tape archives (tar).
 
+#![allow(unstable)]
 #![feature(unsafe_destructor)]
 
 extern crate libc;

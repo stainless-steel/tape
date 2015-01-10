@@ -10,7 +10,7 @@ In `Cargo.toml`:
 
 ```toml
 [dependencies]
-tape = "0.0.8"
+tape = "0.0.9"
 ```
 
 In `main.rs`:
