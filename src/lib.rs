@@ -1,14 +1,13 @@
 //! Basic operations with tape archives (tar).
 
-#![allow(unstable)]
-#![feature(unsafe_destructor)]
+#![feature(libc, path, std_misc, unsafe_destructor)]
 
 extern crate libc;
 
 extern crate "libtar-sys" as raw;
 
 use std::sync::{StaticMutex, MUTEX_INIT};
-use std::io::{IoError, IoResult};
+use std::old_io::{IoError, IoResult};
 
 // libtar is not thread safe.
 static LOCK: StaticMutex = MUTEX_INIT;

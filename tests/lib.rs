@@ -1,11 +1,11 @@
-#![allow(unstable)]
+#![feature(io, path)]
 
 extern crate tape;
 
 #[test]
 fn extract() {
-    use std::io::TempDir;
-    use std::io::fs::PathExtensions;
+    use std::old_io::TempDir;
+    use std::old_io::fs::PathExtensions;
 
     let foo = Path::new("tests").join_many(&["fixtures", "foo.tar"]);
     assert!(foo.exists());
