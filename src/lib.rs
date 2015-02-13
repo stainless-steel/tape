@@ -1,6 +1,6 @@
 //! Basic operations with tape archives (tar).
 
-#![feature(libc, path, std_misc, unsafe_destructor)]
+#![feature(io, libc, path, std_misc, unsafe_destructor)]
 
 extern crate libc;
 
