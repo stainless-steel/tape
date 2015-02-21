@@ -1,16 +1,20 @@
-#![feature(old_io, old_path)]
+#![feature(fs, path)]
 
 extern crate tape;
+extern crate temporary;
+
+use std::path::PathBuf;
+use temporary::Directory;
 
 #[test]
 fn extract() {
-    use std::old_io::TempDir;
-    use std::old_io::fs::PathExtensions;
+    use std::fs::PathExt;
 
-    let foo = Path::new("tests").join_many(&["fixtures", "foo.tar"]);
-    assert!(foo.exists());
+    let mut foo = PathBuf::new("tests");
+    foo.push("fixtures");
+    foo.push("foo.tar");
 
-    let dir = TempDir::new("tape").unwrap();
+    let dir = Directory::new("tape").unwrap();
 
     let archive = tape::open(&foo).unwrap();
     assert!(archive.extract(dir.path()).is_ok());

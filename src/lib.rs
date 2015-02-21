@@ -1,13 +1,14 @@
 //! Basic operations with tape archives (tar).
 
-#![feature(old_io, libc, old_path, std_misc, unsafe_destructor)]
+#![feature(io, libc, path, std_misc, unsafe_destructor)]
 
 extern crate libc;
 
 extern crate "libtar-sys" as raw;
 
+use std::io::{Error, ErrorKind, Result};
+use std::path::Path;
 use std::sync::{StaticMutex, MUTEX_INIT};
-use std::old_io::{IoError, IoResult};
 
 // libtar is not thread safe.
 static LOCK: StaticMutex = MUTEX_INIT;
@@ -20,33 +21,52 @@ pub struct Archive {
 macro_rules! done(
     ($result:expr) => (
         if $result != 0 {
-            return Err(IoError::last_error());
+            return Err(Error::last_os_error());
+        }
+    );
+);
+
+macro_rules! raise(
+    ($message:expr) => (
+        return Err(Error::new(ErrorKind::Other, $message, None))
+    );
+);
+
+macro_rules! path_to_c_str(
+    ($path:expr) => (
+        match $path.to_str() {
+            Some(path) => match CString::new(path) {
+                Ok(path) => path,
+                Err(_) => raise!("the path is invalid"),
+            },
+            None => raise!("the path is invalid"),
         }
     );
 );
 
 impl Archive {
     /// Open an archive.
-    pub fn open(path: &Path) -> IoResult<Archive> {
+    pub fn open(path: &Path) -> Result<Archive> {
         use libc::consts::os::posix88::O_RDONLY;
         use std::ffi::CString;
 
         let mut tar = 0 as *mut raw::TAR;
         unsafe {
             let _lock = LOCK.lock();
-            done!(raw::tar_open(&mut tar, CString::new(path.as_vec()).unwrap().as_ptr(),
-                                0 as *mut _, O_RDONLY, 0, 0));
+            let path = path_to_c_str!(path);
+            done!(raw::tar_open(&mut tar, path.as_ptr(), 0 as *mut _, O_RDONLY, 0, 0));
         }
         Ok(Archive { raw: tar })
     }
 
     /// Extract all files from the archive into a directory.
-    pub fn extract(&self, path: &Path) -> IoResult<()> {
+    pub fn extract(&self, path: &Path) -> Result<()> {
         use std::ffi::CString;
 
         unsafe {
             let _lock = LOCK.lock();
-            done!(raw::tar_extract_all(self.raw, CString::new(path.as_vec()).unwrap().as_ptr()));
+            let path = path_to_c_str!(path);
+            done!(raw::tar_extract_all(self.raw, path.as_ptr()));
         }
         Ok(())
     }
@@ -54,7 +74,7 @@ impl Archive {
 
 /// Open an archive.
 #[inline]
-pub fn open(path: &Path) -> IoResult<Archive> { Archive::open(path) }
+pub fn open(path: &Path) -> Result<Archive> { Archive::open(path) }
 
 #[unsafe_destructor]
 impl Drop for Archive {
