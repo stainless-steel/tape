@@ -1,6 +1,6 @@
 //! Basic operations with tape archives (tar).
 
-#![feature(io, libc, path, std_misc, unsafe_destructor)]
+#![feature(old_io, libc, old_path, std_misc, unsafe_destructor)]
 
 extern crate libc;
 
@@ -34,7 +34,7 @@ impl Archive {
         let mut tar = 0 as *mut raw::TAR;
         unsafe {
             let _lock = LOCK.lock();
-            done!(raw::tar_open(&mut tar, CString::from_slice(path.as_vec()).as_ptr(),
+            done!(raw::tar_open(&mut tar, CString::new(path.as_vec()).unwrap().as_ptr(),
                                 0 as *mut _, O_RDONLY, 0, 0));
         }
         Ok(Archive { raw: tar })
@@ -46,7 +46,7 @@ impl Archive {
 
         unsafe {
             let _lock = LOCK.lock();
-            done!(raw::tar_extract_all(self.raw, CString::from_slice(path.as_vec()).as_ptr()));
+            done!(raw::tar_extract_all(self.raw, CString::new(path.as_vec()).unwrap().as_ptr()));
         }
         Ok(())
     }
