@@ -10,15 +10,12 @@ use temporary::Directory;
 fn extract() {
     use std::fs::PathExt;
 
-    let mut foo = PathBuf::new("tests");
-    foo.push("fixtures");
-    foo.push("foo.tar");
-
-    let dir = Directory::new("tape").unwrap();
+    let foo = PathBuf::new("tests").join("fixtures").join("foo.tar");
+    let directory = Directory::new("tape").unwrap();
 
     let archive = tape::open(&foo).unwrap();
-    assert!(archive.extract(dir.path()).is_ok());
+    assert!(archive.extract(directory.path()).is_ok());
 
-    let bar = dir.path().join("bar.txt");
+    let bar = directory.path().join("bar.txt");
     assert!(bar.exists());
 }
