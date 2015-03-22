@@ -1,4 +1,4 @@
-#![feature(fs, path)]
+#![feature(path_ext)]
 
 extern crate tape;
 extern crate temporary;
