@@ -1,4 +1,4 @@
-#![feature(path_ext)]
+#![feature(convert, path_ext)]
 
 extern crate tape;
 extern crate temporary;
@@ -10,7 +10,7 @@ use temporary::Directory;
 fn extract() {
     use std::fs::PathExt;
 
-    let foo = PathBuf::new("tests").join("fixtures").join("foo.tar");
+    let foo = PathBuf::from("tests").join("fixtures").join("foo.tar");
     let directory = Directory::new("tape").unwrap();
 
     let archive = tape::open(&foo).unwrap();

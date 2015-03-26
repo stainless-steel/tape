@@ -4,7 +4,7 @@
 
 extern crate libc;
 
-extern crate "libtar-sys" as raw;
+extern crate libtar_sys as raw;
 
 use std::io::{Error, ErrorKind, Result};
 use std::path::Path;
