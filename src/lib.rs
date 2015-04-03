@@ -1,6 +1,6 @@
 //! Basic operations with tape archives (tar).
 
-#![feature(io, libc, std_misc, unsafe_destructor)]
+#![feature(std_misc, unsafe_destructor)]
 
 extern crate libc;
 
@@ -28,7 +28,7 @@ macro_rules! done(
 
 macro_rules! raise(
     ($message:expr) => (
-        return Err(Error::new(ErrorKind::Other, $message, None))
+        return Err(Error::new(ErrorKind::Other, $message))
     );
 );
 

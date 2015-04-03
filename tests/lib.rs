@@ -1,4 +1,4 @@
-#![feature(convert, path_ext)]
+#![feature(path_ext)]
 
 extern crate tape;
 extern crate temporary;
