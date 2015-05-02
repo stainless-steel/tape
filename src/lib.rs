@@ -1,6 +1,6 @@
 //! Basic operations with tape archives (tar).
 
-#![feature(std_misc, unsafe_destructor)]
+#![feature(std_misc)]
 
 extern crate libc;
 
@@ -76,7 +76,6 @@ impl Archive {
 #[inline]
 pub fn open(path: &Path) -> Result<Archive> { Archive::open(path) }
 
-#[unsafe_destructor]
 impl Drop for Archive {
     #[inline]
     fn drop(&mut self) {
