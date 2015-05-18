@@ -9,6 +9,7 @@ documentation = "https://stainless-steel.github.io/tape"
 description = "The library provides basic operations with tape archives (tar)."
 
 [dependencies]
+lazy_static = "*"
 libc = "*"
 tar-sys = "*"
 

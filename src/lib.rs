@@ -1,21 +1,18 @@
 //! Basic operations with tape archives (tar).
 
-#![feature(std_misc)]
-
+#[macro_use]
+extern crate lazy_static;
 extern crate libc;
 
 extern crate tar_sys as raw;
 
 use std::io::{Error, ErrorKind, Result};
 use std::path::Path;
-use std::sync::{StaticMutex, MUTEX_INIT};
+use std::sync::Mutex;
 
-// libtar is not thread safe.
-static LOCK: StaticMutex = MUTEX_INIT;
-
-/// An archive.
-pub struct Archive {
-    raw: *mut raw::TAR,
+lazy_static! {
+    // libtar is not thread safe.
+    static ref MUTEX: Mutex<isize> = Mutex::new(0);
 }
 
 macro_rules! done(
@@ -44,6 +41,11 @@ macro_rules! path_to_c_str(
     );
 );
 
+/// An archive.
+pub struct Archive {
+    raw: *mut raw::TAR,
+}
+
 impl Archive {
     /// Open an archive.
     pub fn open(path: &Path) -> Result<Archive> {
@@ -52,7 +54,7 @@ impl Archive {
 
         let mut tar = 0 as *mut raw::TAR;
         unsafe {
-            let _lock = LOCK.lock();
+            let _guard = MUTEX.lock().unwrap();
             let path = path_to_c_str!(path);
             done!(raw::tar_open(&mut tar, path.as_ptr(), 0 as *mut _, O_RDONLY, 0, 0));
         }
@@ -64,7 +66,7 @@ impl Archive {
         use std::ffi::CString;
 
         unsafe {
-            let _lock = LOCK.lock();
+            let _guard = MUTEX.lock().unwrap();
             let path = path_to_c_str!(path);
             done!(raw::tar_extract_all(self.raw, path.as_ptr()));
         }
@@ -80,7 +82,7 @@ impl Drop for Archive {
     #[inline]
     fn drop(&mut self) {
         unsafe {
-            let _lock = LOCK.lock();
+            let _guard = MUTEX.lock().unwrap();
             raw::tar_close(self.raw);
         }
     }
