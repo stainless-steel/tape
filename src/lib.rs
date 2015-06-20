@@ -1,4 +1,14 @@
 //! Basic operations with tape archives (tar).
+//!
+//! ```rust
+//! # extern crate tape;
+//! # extern crate temporary;
+//! let (from, into) = ("foo.tar", "bar");
+//! # let from = "tests/fixtures/foo.tar";
+//! # let directory = temporary::Directory::new("tape").unwrap();
+//! # let into = directory.path();
+//! tape::open(from).unwrap().extract(into).unwrap();
+//! ```
 
 #[macro_use]
 extern crate lazy_static;

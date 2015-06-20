@@ -6,23 +6,10 @@ The library provides basic operations with tape archives (tar).
 
 ## Example
 
-In `Cargo.toml`:
-
-```toml
-[dependencies]
-tape = "0.1"
-```
-
-In `main.rs`:
-
 ```rust
-extern crate tape;
-
-fn main() {
-    // tar -xf foo.tar -C bar
-    let archive = tape::open(&Path::new("foo.tar")).unwrap();
-    archive.extract(&Path::new("bar"));
-}
+// tar -xf foo.tar -C bar
+let (from, into) = ("foo.tar", "bar");
+tape::open(from).unwrap().extract(into).unwrap();
 ```
 
 ## Acknowledgments
