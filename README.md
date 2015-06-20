@@ -1,4 +1,4 @@
-# Tape [![Build Status][travis-svg]][travis-url]
+# Tape [![Version][version-img]][version-url] [![Status][status-img]][status-url]
 
 The library provides basic operations with tape archives (tar).
 
@@ -20,10 +20,12 @@ The library is based on [libtar][1] written by Mark D. Roth.
 
 1. Fork the project.
 2. Implement your idea.
-3. Create a pull request.
+3. Open a pull request.
 
 [1]: http://www.feep.net/libtar/
 
-[travis-svg]: https://travis-ci.org/stainless-steel/tape.svg?branch=master
-[travis-url]: https://travis-ci.org/stainless-steel/tape
+[version-img]: https://img.shields.io/crates/v/tape.svg
+[version-url]: https://crates.io/crates/tape
+[status-svg]: https://travis-ci.org/stainless-steel/tape.svg?branch=master
+[status-url]: https://travis-ci.org/stainless-steel/tape
 [docs]: https://stainless-steel.github.io/tape
