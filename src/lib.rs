@@ -1,5 +1,7 @@
 //! Basic operations with tape archives (tar).
 //!
+//! ## Example
+//!
 //! ```rust
 //! # extern crate tape;
 //! # extern crate temporary;
