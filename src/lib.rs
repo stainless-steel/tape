@@ -48,26 +48,26 @@ pub struct Archive {
 
 impl Archive {
     /// Open an archive.
-    pub fn open(path: &Path) -> Result<Archive> {
+    pub fn open<T: AsRef<Path>>(path: T) -> Result<Archive> {
         use libc::consts::os::posix88::O_RDONLY;
         use std::ffi::CString;
 
         let mut tar = 0 as *mut raw::TAR;
         unsafe {
             let _guard = MUTEX.lock().unwrap();
-            let path = path_to_c_str!(path);
+            let path = path_to_c_str!(path.as_ref());
             done!(raw::tar_open(&mut tar, path.as_ptr(), 0 as *mut _, O_RDONLY, 0, 0));
         }
         Ok(Archive { raw: tar })
     }
 
     /// Extract all files from the archive into a directory.
-    pub fn extract(&self, path: &Path) -> Result<()> {
+    pub fn extract<T: AsRef<Path>>(&self, path: T) -> Result<()> {
         use std::ffi::CString;
 
         unsafe {
             let _guard = MUTEX.lock().unwrap();
-            let path = path_to_c_str!(path);
+            let path = path_to_c_str!(path.as_ref());
             done!(raw::tar_extract_all(self.raw, path.as_ptr()));
         }
         Ok(())
@@ -76,7 +76,9 @@ impl Archive {
 
 /// Open an archive.
 #[inline]
-pub fn open(path: &Path) -> Result<Archive> { Archive::open(path) }
+pub fn open<T: AsRef<Path>>(path: T) -> Result<Archive> {
+    Archive::open(path)
+}
 
 impl Drop for Archive {
     #[inline]
