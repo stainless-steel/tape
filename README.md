@@ -26,6 +26,6 @@ The library is based on [libtar][1] written by Mark D. Roth.
 
 [version-img]: https://img.shields.io/crates/v/tape.svg
 [version-url]: https://crates.io/crates/tape
-[status-svg]: https://travis-ci.org/stainless-steel/tape.svg?branch=master
+[status-img]: https://travis-ci.org/stainless-steel/tape.svg?branch=master
 [status-url]: https://travis-ci.org/stainless-steel/tape
 [docs]: https://stainless-steel.github.io/tape
