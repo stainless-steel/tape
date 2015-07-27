@@ -41,16 +41,14 @@ macro_rules! raise(
     );
 );
 
-macro_rules! path_to_c_str(
-    ($path:expr) => (
-        match $path.to_str() {
-            Some(path) => match CString::new(path) {
-                Ok(path) => path,
-                Err(_) => raise!("the path is invalid"),
-            },
-            None => raise!("the path is invalid"),
-        }
-    );
+macro_rules! path_to_cstr(
+    ($path:expr) => (match $path.to_str() {
+        Some(path) => match CString::new(path) {
+            Ok(path) => path,
+            _ => raise!("the path is invalid"),
+        },
+        _ => raise!("the path is invalid"),
+    });
 );
 
 /// An archive.
@@ -67,7 +65,7 @@ impl Archive {
         let mut tar = 0 as *mut raw::TAR;
         unsafe {
             let _guard = MUTEX.lock().unwrap();
-            let path = path_to_c_str!(path.as_ref());
+            let path = path_to_cstr!(path.as_ref());
             done!(raw::tar_open(&mut tar, path.as_ptr(), 0 as *mut _, O_RDONLY, 0, 0));
         }
         Ok(Archive { raw: tar })
@@ -79,7 +77,7 @@ impl Archive {
 
         unsafe {
             let _guard = MUTEX.lock().unwrap();
-            let path = path_to_c_str!(path.as_ref());
+            let path = path_to_cstr!(path.as_ref());
             done!(raw::tar_extract_all(self.raw, path.as_ptr()));
         }
         Ok(())
