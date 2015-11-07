@@ -59,7 +59,7 @@ pub struct Archive {
 impl Archive {
     /// Open an archive.
     pub fn open<T: AsRef<Path>>(path: T) -> Result<Archive> {
-        use libc::consts::os::posix88::O_RDONLY;
+        use libc::O_RDONLY;
         use std::ffi::CString;
 
         let mut tar = 0 as *mut raw::TAR;
