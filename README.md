@@ -2,7 +2,7 @@
 
 The library provides basic operations with tape archives (tar).
 
-## [Documentation][docs]
+## [Documentation][doc]
 
 ## Example
 
@@ -16,16 +16,16 @@ tape::open(from).unwrap().extract(into).unwrap();
 
 The library is based on [libtar][1] written by Mark D. Roth.
 
-## Contributing
+## Contribution
 
-1. Fork the project.
-2. Implement your idea.
-3. Open a pull request.
+Your contribution is highly appreciated. Do not hesitate to open an issue or a
+pull request. Note that any contribution submitted for inclusion in the project
+will be licensed according to the terms given in [LICENSE.md](LICENSE.md).
 
 [1]: http://www.feep.net/libtar/
 
-[version-img]: https://img.shields.io/crates/v/tape.svg
-[version-url]: https://crates.io/crates/tape
+[doc]: https://stainless-steel.github.io/tape
 [status-img]: https://travis-ci.org/stainless-steel/tape.svg?branch=master
 [status-url]: https://travis-ci.org/stainless-steel/tape
-[docs]: https://stainless-steel.github.io/tape
+[version-img]: https://img.shields.io/crates/v/tape.svg
+[version-url]: https://crates.io/crates/tape
