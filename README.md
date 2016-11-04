@@ -2,7 +2,7 @@
 
 The library provides basic operations with tape archives (tar).
 
-## [Documentation][doc]
+## [Documentation][documentation]
 
 ## Example
 
@@ -24,7 +24,7 @@ will be licensed according to the terms given in [LICENSE.md](LICENSE.md).
 
 [1]: http://www.feep.net/libtar/
 
-[doc]: https://stainless-steel.github.io/tape
+[documentation]: https://docs.rs/tape
 [status-img]: https://travis-ci.org/stainless-steel/tape.svg?branch=master
 [status-url]: https://travis-ci.org/stainless-steel/tape
 [version-img]: https://img.shields.io/crates/v/tape.svg
