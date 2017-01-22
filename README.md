@@ -1,6 +1,6 @@
 # Tape [![Version][version-img]][version-url] [![Status][status-img]][status-url]
 
-The library provides basic operations with tape archives (tar).
+The package provides basic operations with tape archives (tar).
 
 ## [Documentation][documentation]
 
@@ -14,7 +14,7 @@ tape::open(from).unwrap().extract(into).unwrap();
 
 ## Acknowledgments
 
-The library is based on [libtar][1] written by Mark D. Roth.
+The package is based on [libtar][1] written by Mark D. Roth.
 
 ## Contribution
 
